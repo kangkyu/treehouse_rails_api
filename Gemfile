@@ -43,5 +43,6 @@ group :development, :test do
   gem 'spring'
 
   gem 'hirb'
+  gem 'awesome_print'
 end
 
