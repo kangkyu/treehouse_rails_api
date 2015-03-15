@@ -21,6 +21,30 @@ class Api::PostsController < ApplicationController
       }.to_json
     end
   end
+  def update
+    post = Post.find(params[:id])
+    if post.update(post_params)
+      render json: {
+        status: 200,
+        message: "Updated successfully",
+        post: post
+      }.to_json
+    else
+      render json: {
+        status: 500,
+        message: "The post could not be updated",
+        post: post
+      }.to_json
+    end
+  end
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    render json: {
+      status: 200,
+      message: "Deleted successfully"
+    }
+  end
   private
   def post_params
     params.require('post').permit('title')
